@@ -51,7 +51,7 @@ Point snake[100];
 Point direction;
 Point food;
 
-//Hien thi text
+//Hien thi text voi mau ngau nhien
 void showText(int x,int y,char *str){
 	int c = getcolor();
 	int color = rand() % 16 + 1;
@@ -59,6 +59,15 @@ void showText(int x,int y,char *str){
 	outtextxy(x+3,y,str);
 	setcolor(c);
 	delay(50);
+}
+
+//Hien thi text voi mau background co dinh
+void showTextBackground(int x,int y,char *str,int color){
+	int bk = getbkcolor();
+	setbkcolor(color);
+	outtextxy(x,y,str);
+	delay(200);
+	setbkcolor(bk);
 }
 
 void loadingScreen() {
@@ -147,10 +156,14 @@ void run (){
 	//loadingScreen();
 ;
 	initGame();
-	settextstyle(1,0,1);
+	settextstyle(1,0,6);
 	setcolor (10);
 	showText(110, 110, "Hien thi text");
-	Sleep(3000);
+	clearmouseclick(WM_LBUTTONDOWN);
+	
+	showTextBackground(110, 210, "Hien thi text", 12);
+	
+	Sleep(10000);
 }
 	
 
