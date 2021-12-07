@@ -51,6 +51,7 @@ Point snake[100];
 Point direction;
 Point food;
 
+//Hien thi text
 void showText(int x,int y,char *str){
 	int c = getcolor();
 	int color = rand() % 16 + 1;
@@ -78,6 +79,7 @@ void loadingScreen() {
 	}
 }
 
+
 bool checkPoint (){
 	for (int i = 0;i < snakeLength;i++){
 		if (food.x == snake[i].x && food.y == snake[i].y)
@@ -85,6 +87,8 @@ bool checkPoint (){
 	}
 	return true;
 }
+
+
 
 void initGame(){
 	setbkcolor (15);
@@ -132,18 +136,21 @@ void initGame(){
 	srand ( time(NULL));
 	
 	//Khoi tao trai cay
-   	do{
+   	/*do{
         food.x = (rand() % (39) + 3)*10;
     	food.y = (rand() % (19) + 3)*10;
-	}while (checkPoint() == false);
-	Sleep(3000);
+	}while (checkPoint() == false);*/
+
 }
 void run (){
 	initwindow (800,600);
-	loadingScreen();
-
+	//loadingScreen();
+;
 	initGame();
-	
+	settextstyle(1,0,1);
+	setcolor (10);
+	showText(110, 110, "Hien thi text");
+	Sleep(3000);
 }
 	
 
