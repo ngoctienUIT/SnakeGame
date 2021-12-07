@@ -44,6 +44,13 @@ bool isEmpty();
 void showText(int x,int y,char *str);
 void showTextBackground(int x,int y,char *str,int color);
 
+int level;
+bool endGame;
+int snakeLength;
+Point snake[100];
+Point direction;
+Point food;
+
 void showText(int x,int y,char *str){
 	int c = getcolor();
 	int color = rand() % 16 + 1;
@@ -71,15 +78,19 @@ void loadingScreen() {
 	}
 }
 
-void run (){
-	initwindow (800,600);
-	loadingScreen();
+bool checkPoint (){
+	for (int i = 0;i < snakeLength;i++){
+		if (food.x == snake[i].x && food.y == snake[i].y)
+		return false;
+	}
+	return true;
+}
 
-	
+void initGame(){
 	setbkcolor (15);
 	cleardevice ();
 	setwindowtitle ("SNAKE-Playing....");
-
+	endGame = false;
 	setfillstyle (1,5);
 	bar (MINX,MINY,MAXX,MINY+5);
 	bar (MAXX,MINY,MAXX-5,MAXY);
@@ -101,14 +112,27 @@ void run (){
 	setcolor(0);settextstyle (4,0,3);outtextxy(200,450,"Pause/Resum");
 	bar (50,500,170,530);setcolor (15);settextstyle(1,0,1);setbkcolor(0);outtextxy(80,505,"ESC");setbkcolor(bk);
 	setcolor(0);settextstyle (4,0,3);outtextxy(200,500,"End Game");
-
-	
+	snake[0].x = 60;snake[0].y = 50;
+	snake[1].x = 50;snake[1].y = 50;
+	snake[2].x = 40;snake[2].y = 50;
+	snakeLength = 3;
 	setfillstyle (1,BACKGROUND);
 	bar (25,25,415,215);
-	
+	direction.x = 10;direction.y = 0; // Khoi tao di theo huong trai qua phai
 	setcolor (2);
-	Sleep(2000);
-		
+	srand ( time(NULL));
+	//Init food
+    do{
+        food.x = (rand() % (39) + 3)*10;
+    	food.y = (rand() % (19) + 3)*10;
+	}while (checkPoint() == false);
+	Sleep(3000);
+}
+void run (){
+	initwindow (800,600);
+	loadingScreen();
+	initGame();
+	
 }
 	
 
