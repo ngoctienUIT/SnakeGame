@@ -103,6 +103,24 @@ void drawPoint (int x,int y,int radius){
 	floodfill (x,y,getcolor());
 }
 
+//Ve Snake
+void drawSnake (){
+	setfillstyle (1,10);
+	int dem = 0;
+	for (int i = 0;dem < snakeLength;i++){
+			drawPoint(snake[i].x, snake[i].y,5);
+			dem++;
+		}
+	//Xoa dot cuoi cung cua than ran moi khi no di chuyen
+	int x = getcolor();
+	setfillstyle (1,BACKGROUND);
+	drawPoint(snake[snakeLength-1].x0,snake[snakeLength-1].y0,5);
+	setcolor (BACKGROUND);
+	circle (snake[snakeLength-1].x0,snake[snakeLength-1].y0,5);
+	setcolor(x);
+	setfillstyle (1,5);
+}
+
 void initGame(){
 	setbkcolor (15);
 	cleardevice ();
