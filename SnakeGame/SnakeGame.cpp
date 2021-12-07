@@ -132,6 +132,19 @@ void drawFood (){
 	setfillstyle (1,BACKGROUND);
 }
 
+//Ve toan bo giao dien game
+void drawGame (){
+	drawSnake();
+	drawFood();
+	int x = getcolor ();
+	setcolor (2);
+	sprintf(score_str,"%d",snakeLength*level*10-level*30);    //Hien thi diem
+   settextstyle(4,0,3);
+   outtextxy(450,100,"SCORE:");
+   setcolor(12);
+   outtextxy(600,20,score_str);
+   setcolor (x);
+}
 
 void initGame(){
 	setbkcolor (15);
