@@ -91,13 +91,17 @@ void initGame(){
 	cleardevice ();
 	setwindowtitle ("SNAKE-Playing....");
 	endGame = false;
-	setfillstyle (1,5);
-	bar (MINX,MINY,MAXX,MINY+5);
-	bar (MAXX,MINY,MAXX-5,MAXY);
-	bar (MAXX,MAXY,MINX,MAXY-5);
-	bar (MINX,MINY,MINX+5,MAXY);
+	setfillstyle (1,12);
+
+	// Khoi tao khung tro choi
+	bar(MINX,MINY,MAXX,MINY+5);
+	bar(MAXX,MINY,MAXX-5,MAXY);
+	bar(MAXX,MAXY,MINX,MAXY-5);
+	bar(MINX,MINY,MINX+5,MAXY);
     setcolor (0);
     int bk = getbkcolor();
+    
+    // Khoi tao bang huong dan cac phim dieu huong
     setfillstyle (SOLID_FILL,0);
 	int a[] = {15,350,30,350,30,345,50,355,30,365,30,360,15,360,15,350};
     fillpoly (8,a);
@@ -108,21 +112,27 @@ void initGame(){
 	fillpoly (8,c);outtextxy (265,340,"Up");
 	int d[] = {235,400,235,415,230,415,240,430,250,415,245,415,245,400,235,400};
 	fillpoly (8,d);outtextxy (265,400,"Down");
-	bar (50,450,170,480);setcolor (15);settextstyle(1,0,1);setbkcolor(0);outtextxy(60,455,"SPACE");setbkcolor(bk);
+	bar (50,450,170,480);setcolor(15);settextstyle(1,0,1);setbkcolor(0);outtextxy(60,455,"SPACE");setbkcolor(bk);
 	setcolor(0);settextstyle (4,0,3);outtextxy(200,450,"Pause/Resum");
-	bar (50,500,170,530);setcolor (15);settextstyle(1,0,1);setbkcolor(0);outtextxy(80,505,"ESC");setbkcolor(bk);
+	bar (50,500,170,530);setcolor(15);settextstyle(1,0,1);setbkcolor(0);outtextxy(80,505,"ESC");setbkcolor(bk);
 	setcolor(0);settextstyle (4,0,3);outtextxy(200,500,"End Game");
+	
+	//Khoi tao thuoc tinh ban dau cho con ran
 	snake[0].x = 60;snake[0].y = 50;
 	snake[1].x = 50;snake[1].y = 50;
 	snake[2].x = 40;snake[2].y = 50;
 	snakeLength = 3;
+	
 	setfillstyle (1,BACKGROUND);
 	bar (25,25,415,215);
-	direction.x = 10;direction.y = 0; // Khoi tao di theo huong trai qua phai
+	
+	// Khoi tao huong di
+	direction.x = 10;direction.y = 0; 
 	setcolor (2);
 	srand ( time(NULL));
-	//Init food
-    do{
+	
+	//Khoi tao trai cay
+   	do{
         food.x = (rand() % (39) + 3)*10;
     	food.y = (rand() % (19) + 3)*10;
 	}while (checkPoint() == false);
@@ -131,6 +141,7 @@ void initGame(){
 void run (){
 	initwindow (800,600);
 	loadingScreen();
+
 	initGame();
 	
 }
