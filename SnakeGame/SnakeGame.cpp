@@ -21,6 +21,16 @@ struct Point {
 
 void loadingScreen();
 void run();
+void showText(int x,int y,char *str);
+
+void showText(int x,int y,char *str){
+	int c = getcolor();
+	int color = rand() % 16 + 1;
+	setcolor(color);
+	outtextxy(x+3,y,str);
+	setcolor(c);
+	delay(50);
+}
 
 void loadingScreen() {
 	int x = 0;
@@ -43,10 +53,46 @@ void loadingScreen() {
 void run (){
 	initwindow (800,600);
 	loadingScreen();
+
+	
+	setbkcolor (15);
+	cleardevice ();
+	setwindowtitle ("SNAKE-Playing....");
+
+	setfillstyle (1,5);
+	bar (MINX,MINY,MAXX,MINY+5);
+	bar (MAXX,MINY,MAXX-5,MAXY);
+	bar (MAXX,MAXY,MINX,MAXY-5);
+	bar (MINX,MINY,MINX+5,MAXY);
+    setcolor (0);
+    int bk = getbkcolor();
+    setfillstyle (SOLID_FILL,0);
+	int a[] = {15,350,30,350,30,345,50,355,30,365,30,360,15,360,15,350};
+    fillpoly (12,a);
+    settextstyle (4,0,3); outtextxy (70,340,"Right");
+    int b[] = {15,410,30,400,30,405,45,405,45,415,30,415,30,420,15,410};
+    fillpoly (12,b);outtextxy (70,400,"Left");
+	int c[] = {235,370,235,355,230,355,240,340,250,355,245,355,245,370,235,370};
+	fillpoly (12,c);outtextxy (265,340,"Up");
+	int d[] = {235,400,235,415,230,415,240,430,250,415,245,415,245,400,235,400};
+	fillpoly (12,d);outtextxy (265,400,"Down");
+	bar (50,450,170,480);setcolor (15);settextstyle(1,0,1);setbkcolor(0);outtextxy(60,455,"SPACE");setbkcolor(bk);
+	setcolor(0);settextstyle (4,0,3);outtextxy(200,450,"Pause/Resum");
+	bar (50,500,170,530);setcolor (15);settextstyle(1,0,1);setbkcolor(0);outtextxy(80,505,"ESC");setbkcolor(bk);
+	setcolor(0);settextstyle (4,0,3);outtextxy(200,500,"End Game");
+
+	
+	setfillstyle (1,BACKGROUND);
+	bar (25,25,415,215);
+	
+	setcolor (2);
+	Sleep(10000);
+		
 }
+	
 
 
-int main (){
+int main () {
 	cout<< "Welcome to 3PGT's Snake Game!";
 	run();
 	return 0;
