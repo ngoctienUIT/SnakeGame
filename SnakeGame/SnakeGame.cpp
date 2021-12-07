@@ -97,7 +97,11 @@ bool checkPoint (){
 	return true;
 }
 
-
+//Ve Point co toa do tam (x,y) ban kinh r
+void drawPoint (int x,int y,int radius){
+	circle (x,y,radius);
+	floodfill (x,y,getcolor());
+}
 
 void initGame(){
 	setbkcolor (15);
