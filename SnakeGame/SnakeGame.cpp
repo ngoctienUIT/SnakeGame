@@ -43,15 +43,20 @@ bool isEmpty();
 void showText(int x,int y,char *str);
 void showTextBackground(int x,int y,char *str,int color);
 
+
 int level;
 bool endGame;
 int snakeLength;
 Point snake[100];
 Point direction;
 Point food;
+const int DIRECTION	= 10;
+HighScore  highscore[5];
+char* score_str = new char[20];
 
 //Hien thi text voi mau ngau nhien
-void showText(int x,int y,char *str){
+void showText(int x,int y,char *str)
+{
 	int c = getcolor();
 	int color = rand() % 16 + 1;
 	setcolor(color);
@@ -61,7 +66,8 @@ void showText(int x,int y,char *str){
 }
 
 //Hien thi text voi mau background co dinh
-void showTextBackground(int x,int y,char *str,int color){
+void showTextBackground(int x,int y,char *str,int color)
+{
 	int bk = getbkcolor();
 	setbkcolor(color);
 	outtextxy(x,y,str);
@@ -69,7 +75,8 @@ void showTextBackground(int x,int y,char *str,int color){
 	setbkcolor(bk);
 }
 
-void loadingScreen() {
+void loadingScreen() 
+{
 	int x = 0;
 	char *s = new char[5];
 	while (x <= 100){
@@ -88,7 +95,8 @@ void loadingScreen() {
 }
 
 
-bool checkPoint (){
+bool checkPoint ()
+{
 	for (int i = 0;i < snakeLength;i++){
 		if (food.x == snake[i].x && food.y == snake[i].y)
 		return false;
@@ -97,13 +105,15 @@ bool checkPoint (){
 }
 
 //Ve Point co toa do tam (x,y) ban kinh r
-void drawPoint (int x,int y,int radius){
+void drawPoint (int x,int y,int radius)
+{
 	circle (x,y,radius);
 	floodfill (x,y,getcolor());
 }
 
 //Ve Snake
-void drawSnake (){
+void drawSnake ()
+{
 	setfillstyle (1,10);
 	int dem = 0;
 	for (int i = 0;dem < snakeLength;i++){
@@ -121,7 +131,8 @@ void drawSnake (){
 }
 
 //Hien thi thuc an
-void drawFood (){
+void drawFood ()
+{
 	int x = getcolor();
 	int c = rand() % 14 + 1;
 		setcolor(c);
@@ -132,7 +143,8 @@ void drawFood (){
 }
 
 //Ve toan bo giao dien game
-void drawGame (){
+void drawGame ()
+{
 	drawSnake();
 	drawFood();
 	int x = getcolor ();
@@ -145,7 +157,8 @@ void drawGame (){
    setcolor (x);
 }
 
-void initGame(){
+void initGame()
+{
 	setbkcolor (15);
 	cleardevice ();
 	setwindowtitle ("SNAKE-Playing....");
@@ -197,7 +210,9 @@ void initGame(){
 	}while (checkPoint() == false);*/
 
 }
-void run (){
+
+void run ()
+{
 	initwindow (800,600);
 	//loadingScreen();
 ;
@@ -227,13 +242,13 @@ void changeDirecton (int x)
             			direction.y = DIRECTION; direction.x = 0;
         			}
                    break;
-                case 77: sang phai neu hien tai dang len hoac xuong
+                case 77: //sang phai neu hien tai dang len hoac xuong
                     if (direction.x != -DIRECTION) {
                     	PlaySound(TEXT("beep.wav"), NULL, SND_ASYNC);
             			direction.x = DIRECTION; direction.y = 0;
         			}
                     break;
-                case 75: sang trai neu hien tai dang len hoac xuong
+                case 75: //sang trai neu hien tai dang len hoac xuong
                     if (direction.x != DIRECTION) {
                     	PlaySound(TEXT("beep.wav"), NULL, SND_ASYNC);
             			direction.x = -DIRECTION; direction.y = 0;
@@ -245,7 +260,8 @@ void changeDirecton (int x)
             }
 }
 
-void classic(){
+void classic()
+{
 	// che do choi di xuyen qua tuong
     for (int i = 0; i < snakeLength; i++) {
         if (i == 0) {
@@ -279,7 +295,8 @@ void classic(){
 	}
 }
 
-void modern(){
+void modern()
+{
 	// che do choi khong di xuyen tuong
 	for (int i = 0;i < snakeLength;i++){
 		if (i == 0){
@@ -311,6 +328,34 @@ void modern(){
     		food.y = (rand() % (19) + 3)*10;
 		}while (checkPoint() == false);
 	}
+}
+
+//ham lap cho game chay va thuc thi toan bo  cac hanh dong khi game chay
+void mainLoop (void (*xxx)())
+{
+	int x = getcolor();
+	if (!kbhit()){
+		xxx();
+	}
+	else{
+		char ch;
+        ch = getch();
+		if (ch == -32) ch = getch();
+		if ( ch == 32){
+			setcolor(0);outtextxy (100,100,"Game Pause");setcolor(x);
+			ch = getch();
+			while (ch != 32){
+				ch = getch();
+				delay(0);
+			}
+			setcolor (BACKGROUND);
+			outtextxy (100,100,"Game Pause");
+			setcolor (x);
+			delay(1000);
+		}
+        changeDirecton(ch);
+        mainLoop (xxx);
+    }
 }
 
 int main () {
