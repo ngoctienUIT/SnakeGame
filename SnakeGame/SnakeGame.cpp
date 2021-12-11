@@ -591,15 +591,13 @@ void getHighScore ()
 
 void initScore(){
 	// neu khong co file highcore.txt,khoi tao mang highscore voi name = PLAYER va score = 0
-		//if (isEmpty()){
-		if(1)
-		{
+		if (isEmpty()){
 			for (int i = 0;i < 5;i++)
 			{
 				strcpy(highscore[i].name,"PLAYER");
 				highscore[i].score = 0;
 			}
-			//getHighScore();
+			getHighScore();
 		}
 		// neu co file thi doc file va luu vao mang highscore
 		else
@@ -668,11 +666,11 @@ void checkHighScore (int _score)
 				str[1] = 0;
 				while (ch1 != 13 && x < 10)
 				{
-					do
+					//do
 					{
 						ch1 = getch();
 					}
-					while (ch1 < 65 && ch1 >90 || ch1 < 97 && ch1 > 132);
+					//while (ch1 < 65 && ch1 >90 || ch1 < 97 && ch1 > 132);
 					x++;
 					str[0] = ch1;
 					strcat(_name,str);
@@ -689,7 +687,7 @@ void checkHighScore (int _score)
 		}
 	}
 	//goi ham luu vao file
-	//getHighScore();
+	getHighScore();
 }
 
 //kiem tra xem file highscore.txt co rong hay khong
