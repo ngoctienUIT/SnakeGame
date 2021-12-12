@@ -41,5 +41,7 @@ Xây dựng game con rắn bằng ngôn ngữ C++
 ### Cấu trúc
 
 ## Demo <a name="demo"></a>
+  
 https://user-images.githubusercontent.com/94039133/145713396-726d1f95-6fd0-44e1-bd2d-e4de6cb974de.mp4
+
 [Lên đầu trang](#top)
