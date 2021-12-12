@@ -41,5 +41,6 @@ Xây dựng game con rắn bằng ngôn ngữ C++
 ### Cấu trúc
 
 ## Demo <a name="demo"></a>
-  [![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://github.com/ngoctienUIT/SnakeGame/blob/main/Demo/demo1.mp4)
+  [![Watch the video](https://github.com/ngoctienUIT/SnakeGame/blob/main/Demo/demo2.png)](https://github.com/ngoctienUIT/SnakeGame/blob/main/Demo/demo1.mp4)
+  [![Watch the video](https://github.com/ngoctienUIT/SnakeGame/blob/main/Demo/demo1.png)](https://github.com/ngoctienUIT/SnakeGame/blob/main/Demo/demo2.mp4)
 [Lên đầu trang](#top)
