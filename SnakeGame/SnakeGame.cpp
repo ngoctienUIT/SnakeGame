@@ -671,9 +671,27 @@ void checkHighScore (int _score)
 						ch1 = getch();
 					}
 					//while (ch1 < 65 && ch1 >90 || ch1 < 97 && ch1 > 132);
-					x++;
-					str[0] = ch1;
-					strcat(_name,str);
+					if(ch1==8)
+						{
+							x--;
+							int i=strlen(_name);
+							char k[20];
+							for(int j=0;j<i-1;j=j+1)
+							{ 
+								k[j]=_name[j];
+							}
+							k[i-1]='\0';
+							strcpy(_name,k );
+							outtextxy(540,150,"                       ");
+							
+							
+						}
+					else
+						{
+						x++;
+						str[0] = ch1;
+						strcat(_name,str);
+						}
 					outtextxy(540,150,_name);
 				}
 			for (int j = 4;j > i;j--)
