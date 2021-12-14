@@ -32,7 +32,7 @@ Xây dựng game con rắn bằng ngôn ngữ C++
 ### Công nghệ sử dụng <a name="use"></a>
 
 - Ngôn ngữ: C++
-- Framework: 
+- IDE: DevC++ 
 
 [Lên đầu trang](#top)
 ### Tính năng chính <a name="main-feature"></a>
