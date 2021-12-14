@@ -218,7 +218,19 @@ void initGame()
 void run (){
 	initwindow (800,600);
 	initScore();
-	loadingScreen();
+	int x = 0;
+	char *s = new char[5];
+	while (x <= 100){
+		cleardevice();
+		setcolor (10);settextstyle(4,0,5);outtextxy (60,200,"Game Loading...");
+		sprintf (s,"%d",x);
+		setcolor (4);
+		outtextxy (550,200,strcat(s,"%"));
+		if (x == 100)
+			delay (500);
+		delay (20);
+		x++;
+	}
 	
 	while (true){
 	x1:
