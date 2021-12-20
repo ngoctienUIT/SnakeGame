@@ -36,12 +36,12 @@ void mainLoop (void (*gloop)());
 void run ();
 void changeDirecton (int x);
 void showHighScore();
-void getHighScore();
+void saveHighScore();
 void checkHighScore(int score);
 void initScore();
 bool isEmpty();
-void showText(int x,int y,char *str);
-void showTextBackground(int x,int y,char *str,int color);
+void displayText(int x,int y,char *str);
+void displayTextBackground(int x,int y,char *str,int color);
 
 
 int level;
@@ -55,7 +55,7 @@ HighScore  highscore[5];
 char* score_str = new char[20];
 
 //Hien thi text voi mau ngau nhien
-void showText(int x,int y,char *str)
+void displayText(int x,int y,char *str)
 {
 	int c = getcolor();
 	int color = rand() % 16 + 1;
@@ -66,7 +66,7 @@ void showText(int x,int y,char *str)
 }
 
 //Hien thi text voi mau background co dinh
-void showTextBackground(int x,int y,char *str,int color)
+void displayTextBackground(int x,int y,char *str,int color)
 {
 	int bk = getbkcolor();
 	setbkcolor(color);
@@ -218,19 +218,7 @@ void initGame()
 void run (){
 	initwindow (800,600);
 	initScore();
-	int x = 0;
-	char *s = new char[5];
-	while (x <= 100){
-		cleardevice();
-		setcolor (10);settextstyle(4,0,5);outtextxy (60,200,"Game Loading...");
-		sprintf (s,"%d",x);
-		setcolor (4);
-		outtextxy (550,200,strcat(s,"%"));
-		if (x == 100)
-			delay (500);
-		delay (20);
-		x++;
-	}
+	loadingScreen();
 	
 	while (true){
 	x1:
@@ -245,14 +233,14 @@ void run (){
 		setcolor (10);
 		outtextxy(120,70,"GAME MENU");
 		settextstyle(10,0,5);
-		showText (220,200,"NEW GAME");
-		showText (220,270,"HIGH SCORE");
-		showText (220,340,"QUIT GAME");
-		showText (220,410,"ABOUT");
+		displayText (220,200,"NEW GAME");
+		displayText (220,270,"HIGH SCORE");
+		displayText (220,340,"QUIT GAME");
+		displayText (220,410,"ABOUT");
 	}
 	clearmouseclick(WM_LBUTTONDOWN);
 	if (mousey() <= 255){
-		showTextBackground(220,200,"NEW GAME",15);
+		displayTextBackground(220,200,"NEW GAME",15);
 		x2:
 		setbkcolor(0);
 		cleardevice();
@@ -262,8 +250,8 @@ void run (){
 			settextstyle(1,0,6);setcolor(10);
 			outtextxy (150,150,"GAME TYPE");
 			setcolor(15);settextstyle(1,0,4);
-			showTextBackground(250,250,"CLASSIC",0);
-			showTextBackground (250,350,"MODERN",0);
+			displayTextBackground(250,250,"CLASSIC",0);
+			displayTextBackground (250,350,"MODERN",0);
 		}
 		if (ismouseclick(WM_LBUTTONDOWN) && mousex() >= 290 && mousex() <= 520 && mousey() >= 240 && mousey() <= 400){
 			if(mousey() <= 300) nameFunction = 1;
@@ -285,7 +273,7 @@ void run (){
 		for(int i = 1;i <= 5;i++){
 			sprintf(str1,"%d",i);
 			settextstyle(4,0,4);
-			showTextBackground(xx,300,str1,0);
+			displayTextBackground(xx,300,str1,0);
 			xx+= 100;
 		}
 		if (ismouseclick(WM_LBUTTONDOWN) && mousex() >= 300 && mousex() <= 790 && mousey() >= 280 && mousey() <= 350){
@@ -321,19 +309,19 @@ void run (){
 		clearmouseclick(WM_LBUTTONDOWN);
 		while (!ismouseclick(WM_LBUTTONDOWN))
 		{
-			showTextBackground(150,270,"YES",12);showTextBackground(300,270,"NO",7);
+			displayTextBackground(150,270,"YES",12);displayTextBackground(300,270,"NO",7);
 		}
 		if(ismouseclick(WM_LBUTTONDOWN))
 		{
 			if (mousex() >= 140 && mousex() <= 230 && mousey() >= 260 && mousey() <= 310)
 			{
-				showTextBackground(150,270,"YES",7);
+				displayTextBackground(150,270,"YES",7);
 				delay(100);
 				goto x2;
 			}
 			else if(mousex() >= 290 && mousex() <= 360 && mousey() >= 260 && mousey() <= 310)
 			{
-				showTextBackground(300,270,"NO",12);
+				displayTextBackground(300,270,"NO",12);
 				delay(100);
 				goto x1;
 			}
@@ -341,7 +329,7 @@ void run (){
     	}
 		else if (mousey() <= 325)
 		{
-			showTextBackground(220,270,"HIGH SCORE",15);
+			displayTextBackground(220,270,"HIGH SCORE",15);
 			cleardevice();
 			showHighScore();
 			while (!ismouseclick(WM_LBUTTONDOWN))
@@ -352,7 +340,7 @@ void run (){
 		}
 		else if(mousey() <= 395)
 		{
-			showTextBackground (220,340,"QUIT GAME",15);
+			displayTextBackground (220,340,"QUIT GAME",15);
 			exit(0);
 		}
 		else
@@ -369,21 +357,21 @@ void run (){
 			settextstyle(10,0,4);setcolor(9);
 			outtextxy(60,100,"TRUONG DAI HOC CONG NGHE THONG TIN");
 			settextstyle(10,0,5);
-			showText(290,150,"DE TAI");
+			displayText(290,150,"DE TAI");
 			settextstyle(10,0,2);
-			showText(250,200,"TRO CHOI \"RAN SAN MOI\"");
+			displayText(250,200,"TRO CHOI \"RAN SAN MOI\"");
 			settextstyle(10,0,3);
-			showText(220,270,"SINH VIEN THUC HIEN:");
+			displayText(220,270,"SINH VIEN THUC HIEN:");
 			settextstyle(10,0,2);
-			showText(200,320,"TRAN NGOC TIEN - 20520808");
+			displayText(200,320,"TRAN NGOC TIEN - 20520808");
 			settextstyle(10,0,3);
-			showText(200,370,"NGUYEN TAN GIANG - 20521261");
+			displayText(200,370,"NGUYEN TAN GIANG - 20521261");
 			settextstyle(10,0,3);
-			showText(200,420,"LE HOANG PHUC - 20521763");
+			displayText(200,420,"LE HOANG PHUC - 20521763");
 			settextstyle(10,0,3);
-			showText(200,470,"VU THIEN PHU - 20521758");
+			displayText(200,470,"VU THIEN PHU - 20521758");
 			settextstyle(10,0,3);
-			showText(200,520,"NGUYEN HOANG PHUC - 20521768");
+			displayText(200,520,"NGUYEN HOANG PHUC - 20521768");
 		}
 		setcolor(x);
 		settextstyle (1,0,2);
@@ -575,7 +563,7 @@ void showHighScore()
 }
 
 //ham luu diem cao vao file 
-void getHighScore ()
+void saveHighScore ()
 {
 	FILE *f;
 	f = fopen("highscore.txt", "w");
@@ -597,7 +585,7 @@ void initScore(){
 				strcpy(highscore[i].name,"PLAYER");
 				highscore[i].score = 0;
 			}
-			getHighScore();
+			saveHighScore();
 		}
 		// neu co file thi doc file va luu vao mang highscore
 		else
@@ -705,7 +693,7 @@ void checkHighScore (int _score)
 		}
 	}
 	//goi ham luu vao file
-	getHighScore();
+	saveHighScore();
 }
 
 //kiem tra xem file highscore.txt co rong hay khong
