@@ -54,8 +54,8 @@
     \Large
     \textbf{\huge\\[0.01cm] Kỹ năng nghề nghiệp SS004.M13\\[0.5cm]}
     \textbf{Đề tài:\\}
-    \textbf{\huge Đồ án cuối kỳ \\[0.5cm]}
-    \textbf{Sinh viên thực hiện:\\[0.5cm]}
+    \textbf{\huge Đồ án cuối kỳ \\[1 cm]}
+    \textbf{Sinh viên thực hiện:\\}
     \textbf{Trần Ngọc Tiến - 20520808\\}
     \textbf{Nguyễn Tấn Giang - 20521261\\}
     \textbf{Lê Hoàng Phúc - 20521763\\}
@@ -187,8 +187,8 @@ Chữ kí thành viên \\
 \newpage
 \subsection{Không gian làm việc}
 \begin{itemize}
-   \item \href { https://github.com/ngoctienUIT/SnakeGame } { Github }
-    \item \href { https://trello.com/b/aph53kLG } { Trello }
+   \item \href {https://github.com/ngoctienUIT/SnakeGame} { Github }
+    \item \href {https://trello.com/b/aph53kLG} { Trello }
 \end{itemize}
 \newpage
 \section{Phần giới thiệu và hướng dẫn chơi game }
@@ -239,15 +239,17 @@ SnakeGame là một game dựa trên game Rắn săn mồi truyền thống- m�
 \end{itemize}
 
 \section{Tài liệu kỹ thuật}
+\subsection{Vòng lặp của Game}
+\includegraphics[width=\linewidth]{MainLoop.jpg} \\
 \subsection{Nền tảng,công cụ phát triển:}
 \begin{itemize}
     \item Để làm được SnakeGame với đồ họa hình ảnh và âm thanh thì bạn cần phải sử dụng các thư viện đồ họa có sẵn như : winbgim.h .
 	\item Nhóm em đã chọn DevC++ mà không phải Visual Studio làm IDE để phát triển SnakeGame vì sự tiện dụng , cấu hình của DevC++ rất nhẹ có thể sử dụng trên nhiều máy tính thêm vào đó là việc cài đặt thư viện dễ dàng.
 	\item Để có thể lập trình đồ họa bằng C++ trên DevC++ thì bạn cần phải cài đặt thư viện winbgim.h vào DevC++ theo các bước sau:
 	\begin{itemize}
-	    \item Tải DevC++ về máy(link:\href { https://sourceforge.net/projects/embarcadero-devcpp/?fbclid=IwAR28tY1k2jzEnAbQSJlN0Q3Jg741Yeg2CxNU95PquCyH-XCROjNtL2ZfUW8} {DevC++})
+	    \item Tải DevC++ về máy(link:\href {https://sourceforge.net/projects/embarcadero-devcpp/?fbclid=IwAR28tY1k2jzEnAbQSJlN0Q3Jg741Yeg2CxNU95PquCyH-XCROjNtL2ZfUW8} {DevC++})
 	\item Tải thư viện đồ họa về máy: 
-(link:\href { https://drive.google.com/file/d/1iA5XMpK5XhypoUQ5ff2jejrrzEIvomM2/view?usp=sharing} { Graphics })
+(link:\href {https://drive.google.com/file/d/1iA5XMpK5XhypoUQ5ff2jejrrzEIvomM2/view?usp=sharing} { Graphics })
 \item Giải nén file thư viện.
 \item Copy file libbgi.a vào thư mục lib 
 \item Copy file winbgim.h và graphics.h vào thư mục include .
@@ -281,8 +283,8 @@ SnakeGame là một game dựa trên game Rắn săn mồi truyền thống- m�
 \item void drawSnake(): đơn giản chỉ gọi lại hàm drawPoint nhiều lần đề vẽ các đốt của rắn vói tọa độ tâm được truyền vào là tọa độ các đốt của rắn.
 \item void drawFood(): Tương tự như drawSnake cũng là gọi lại hàm drawPoint với tọa độ truyền vào là tọa độ của thức ăn.
 \item void drawGame(): chỉ đơn giản là gọi lại 2 hàm drawSnake và drawFood.
-\item void showText(int x,int y,char *str): sẽ hiện thị ra màn hình chuỗi str tại vị trị (x,y) với màu sắc thay đổi liên tục sau một khoảng thời gian(sử dụng hàm delay).
-\item void showTextBackground(int x,int y,char *str,int color) tương tự như hàm showText nhưng có thêm màu sắc của background xung quanh là cố định được truyền vào qua tham số color.
+\item void displayText(int x,int y,char *str): sẽ hiện thị ra màn hình chuỗi str tại vị trị (x,y) với màu sắc thay đổi liên tục sau một khoảng thời gian(sử dụng hàm delay).
+\item void displayTextBackGround(int x,int y,char *str,int color) tương tự như hàm displayText nhưng có thêm màu sắc của background xung quanh là cố định được truyền vào qua tham số color.
 
 \end{itemize}
 \subsection{Viết các hàm xây dựng tinh logic game.}
@@ -305,8 +307,8 @@ SnakeGame là một game dựa trên game Rắn săn mồi truyền thống- m�
 	    \item showHighScore () : Ta sẽ hiển thị ra màn hình thông tin 5 người chơi có số điểm cao nhất được  được lưu vào file highscore.txt .Nếu file highscore.txt rỗng thì mặc định tên của 5 người chơi đều bằng player và score=0.
 	    \item bool isEmpty() hàm này sẽ giúp ta kiểm tra xem file highscore.txt có rỗng không.
 	    \item void initScore() sẽ gọi lại hàm isEmpty xem file highscore.txt có rỗng rỗng không bằng cách sử dụng hàm isEmpty().Nếu rông thì khởi tạo tên của 5 người chơi đều là Player và score=0.
-	    \item void getHighScore () : cập nhật lại danh sách 5 thành viên điểm cao vào file highscore.txt .
-	    \item void checkHighScore(int score) hàm này sẽ giúp bạn nhập tên người chơi sau khi kết thúc kiểm tra xem số điểm của bạn đạt được có thuộc top 5 người đứng đầu không. Nếu có thì sẽ gọi hàm getHighScore để lưu dữ liệu của bạn vào file highscore.txt. 
+	    \item void saveHighScore () : cập nhật lại danh sách 5 thành viên điểm cao vào file highscore.txt .
+	    \item void checkHighScore(int score) hàm này sẽ giúp bạn nhập tên người chơi sau khi kết thúc kiểm tra xem số điểm của bạn đạt được có thuộc top 5 người đứng đầu không. Nếu có thì sẽ gọi hàm saveHighScore để lưu dữ liệu của bạn vào file highscore.txt. 
     \end{itemize}
 	
     \item Xây dựng UI:
@@ -316,7 +318,7 @@ SnakeGame là một game dựa trên game Rắn săn mồi truyền thống- m�
         \begin{itemize}
             \item  Đây là hàm chạy cho toàn bộ chương trinh, nó sẽ sử dụng các hàm đã viết ở trên.
             \item Đầu tiên sẽ gọi hàm loadingScreen để tạo hiệu ứng tải load game. 
-            \item Sủ dụng các hàm showTextBackground, setbkcolor, ShowText , … để hiển thị ra màn hình tại các vị trí cụ thể. Sử dụng ismouseclick bắt bắt tình huống click chuột, mousex là tọa độ x của con trỏ chuột, mousey là tọa đọ trục Oy của  con trỏ chuột . Kết hợp với các lệnh điều kiện ràng buộc vị trí click chuột để gọi các hàm.
+            \item Sủ dụng các hàm displayTextBackGround, setbkcolor, displayText , … để hiển thị ra màn hình tại các vị trí cụ thể. Sử dụng ismouseclick bắt bắt tình huống click chuột, mousex là tọa độ x của con trỏ chuột, mousey là tọa đọ trục Oy của  con trỏ chuột . Kết hợp với các lệnh điều kiện ràng buộc vị trí click chuột để gọi các hàm.
             \item Để truyền âm thanh vào ta dùng hàm PlaySound(TEXT(“x”)) với x là đường dẫn vào file âm thanh.
         \end{itemize}
 
